@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>OY-error</title>
 </head>
 <body>
     <script type="module">
@@ -21,14 +21,15 @@
     };
     const app = initializeApp(Config);
     const db = getDatabase(app);
-    const dbRef = ref(db, '/isopen')
+    const dbRef = ref(db, 'bool')
 
-    get(dbRef).then((data)=>{
+    onChildAdded(dbRef,(data) => {
       if(data.val() == false)
       location.replace('https://zain00abd.github.io/Accesserror/')
       else if(data.val() == true)
       location.replace('https://zain00abd.github.io/YO-Goethe/')
     })
+
     </script>
 </body>
 </html>
