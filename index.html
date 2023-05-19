@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-app.js";
+    import { getDatabase, update, get, set, ref, onChildAdded, push, child} from "https://www.gstatic.com/firebasejs/9.20.0/firebase-database.js";
+    const Config = {
+      apiKey: "AIzaSyBhPBlerMZGPPn9mfYsZYuIBH0sjAcDoBY",
+      authDomain: "oy-goethe.firebaseapp.com",
+      databaseURL: "https://oy-goethe-default-rtdb.firebaseio.com",
+      projectId: "oy-goethe",
+      storageBucket: "oy-goethe.appspot.com",
+      messagingSenderId: "1080444425010",
+      appId: "1:1080444425010:web:8a7fe567e8d82363cb7d2b"
+    };
+    const app = initializeApp(Config);
+    const db = getDatabase(app);
+    const dbRef = ref(db, '/isopen')
+
+    get(dbRef).then((data)=>{
+      if(data.val() == false)
+      location.replace('https://zain00abd.github.io/Accesserror/')
+      else if(data.val() == true)
+      location.replace('https://zain00abd.github.io/YO-Goethe/')
+    })
+    </script>
+</body>
+</html>
