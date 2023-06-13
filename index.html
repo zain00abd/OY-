@@ -5,8 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OY-error</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+
+
+
+
+  <div class="container" style="display: none;">
+    <h1>يرجى تشغيل VPN</h1>
+    <p>للوصول إلى هذا الموقع، يجب عليك تشغيل خدمة VPN الخاصة بك.</p>
+    <p>يرجى تشغيل VPN الخاص بك وإعادة تحميل الصفحة للوصول إلى المحتوى.</p>
+    <button class="reload-button" onclick="location.reload()">
+      <i class="fas fa-sync-alt"></i> إعادة التحميل
+    </button>
+  </div>
+
+  
+
+
+
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.20.0/firebase-app.js";
     import { getDatabase, update, get, set, ref, onChildAdded, push, child} from "https://www.gstatic.com/firebasejs/9.20.0/firebase-database.js";
@@ -23,12 +42,22 @@
     const db = getDatabase(app);
     const dbRef = ref(db, 'bool')
 
-    onChildAdded(dbRef,(data) => {
-      if(data.val() == false)
-      location.replace('https://zain00abd.github.io/Accesserror/')
-      else if(data.val() == true)
-      location.replace('https://zain00abd.github.io/YO-Goethe/')
-    })
+    onChildAdded(dbRef, (data) => {
+  try {
+    if (data.val() == false) {
+      location.replace('https://zain00abd.github.io/Accesserror/');
+    } else if (data.val() == true) {
+      location.replace('https://zain00abd.github.io/YO-Goethe/');
+    } else {
+      throw new Error("لا يمكن الحصول على البيانات");
+    }
+  } catch (error) {
+    console.log("فشل في الحصول على البيانات:", error.message);
+    document.querySelector('.container').style.display = 'block'
+  }
+});
+
+
 
     </script>
 </body>
