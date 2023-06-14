@@ -41,13 +41,18 @@
     const app = initializeApp(Config);
     const db = getDatabase(app);
     const dbRef = ref(db, 'bool')
+    let isbac = true;
 
     onChildAdded(dbRef, (data) => {
   try {
     if (data.val() == false) {
       location.replace('https://zain00abd.github.io/Accesserror/');
+      isbac = false;
+
     } else if (data.val() == true) {
       location.replace('https://zain00abd.github.io/YO-Goethe/');
+      isbac = false;
+
     } else {
       throw new Error("لا يمكن الحصول على البيانات");
     }
@@ -57,6 +62,12 @@
   }
 });
 
+setTimeout(() =>{
+  if(isbac){
+    console.log(isbac)
+    document.querySelector('.container').style.display = 'block'
+  }
+},2000)
 
 
     </script>
