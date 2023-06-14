@@ -42,6 +42,7 @@
     const db = getDatabase(app);
     const dbRef = ref(db, 'bool')
     let isbac = true;
+    let numtur = 0
 
     onChildAdded(dbRef, (data) => {
   try {
@@ -50,9 +51,9 @@
       isbac = false;
 
     } else if (data.val() == true) {
-      location.replace('https://zain00abd.github.io/YO-Goethe/');
+      numtur++
       isbac = false;
-
+      openpage(numtur)
     } else {
       throw new Error("لا يمكن الحصول على البيانات");
     }
@@ -62,12 +63,35 @@
   }
 });
 
+get(ref(db,'resmax')).then ((data1) =>{
+  if(data1.val().num == 0){
+    location.replace('https://zain00abd.github.io/Accesserror/');
+    isbac = false;
+  }
+  else
+  {
+    numtur++
+    isbac = false;
+    openpage(numtur)
+  }
+  
+})
+
+
+function openpage(numopen){
+  if(numopen == 2){
+    location.replace('https://zain00abd.github.io/YO-Goethe/');
+  }
+}
+
+
 setTimeout(() =>{
   if(isbac){
     console.log(isbac)
     document.querySelector('.container').style.display = 'block'
   }
-},2000)
+  console.log(numtur)
+},1000)
 
 
     </script>
