@@ -64,17 +64,19 @@
 });
 
 get(ref(db,'resmax')).then ((data1) =>{
-  if(data1.val().num == 0){
-    location.replace('https://zain00abd.github.io/Accesserror/');
-    isbac = false;
+  if(data1.val() != null){
+    if(data1.val().num == 0){
+      location.replace('https://zain00abd.github.io/Accesserror/');
+      isbac = false;
+    }
+    else
+    {
+      numtur++
+      isbac = false;
+      openpage(numtur)
+    }
   }
-  else
-  {
-    numtur++
-    isbac = false;
-    openpage(numtur)
-  }
-  
+  else{numtur++;openpage(numtur)}
 })
 
 
